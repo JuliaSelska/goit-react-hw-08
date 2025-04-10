@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { deleteContact, fetchContacts, addContact } from "./contactsOps";
-import { selectNameFilter } from './filtersSlice';
+import { selectNameFilter } from '../filters/filtersSlice';
 
 
 const handlePending = (state) => {
@@ -45,12 +45,7 @@ const contactsSlice = createSlice({
     },
 });
 
-// Селектори
-export const selectContacts = (state) => state.contacts.items;
-export const selectLoading = (state) => state.contacts.loading;
-export const selectError = (state) => state.contacts.error;
 
-// Мемоізований селектор
 export const selectFilteredContacts = createSelector(
     [selectContacts, selectNameFilter],
     (contacts, filter) => {
