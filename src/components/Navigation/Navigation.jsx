@@ -5,19 +5,19 @@ import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 export default function Navigation() {
 
-    const isLoggedIn = useSelector(selectIsLoggedIn)
+    const isLoggedIn = useSelector(selectIsLoggedIn);
 
 
     return (
         <nav>
-            <NavLink to="/">
+            <NavLink className={styles.link} to="/">
                 Home
             </NavLink>
 
 
             {isLoggedIn && (
 
-                <NavLink to="/contacts">
+                <NavLink className={styles.link} to="/contacts">
                     Contacts
                 </NavLink>)}
 
