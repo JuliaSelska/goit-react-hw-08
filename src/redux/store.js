@@ -20,13 +20,13 @@ import authReducer from '../redux/auth/slice'
 const persistedAuthReducer = persistReducer({
     key: 'user-token',
     storage,
-    whitelist: ['token']
+    whitelist: ['token'],
 },
     authReducer
 );
 
 
-const store = configureStore({
+export const store = configureStore({
     reducer: {
         contacts: contactsReducer,
         filters: filtersReducer,
@@ -41,7 +41,7 @@ const store = configureStore({
 });
 
 
-export default configureStore;
+export default store;
 export const persistor = persistStore(store);
 
 // import {

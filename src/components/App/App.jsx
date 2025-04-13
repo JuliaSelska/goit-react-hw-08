@@ -1,10 +1,11 @@
 
 import { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import styles from '../App/App.module.css'
+// import styles from '../App/App.module.css'
 import Layout from '../Layout/Layout';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from '../../redux/auth/operations';
+import { selectIsRefreshing } from '../../redux/auth/selectors';
 import RestrictedRoute from '../RestrictedRoute';
 import PrivateRoute from '../PrivateRoute'
 
@@ -17,6 +18,7 @@ const ContactsPage = lazy(() => import('../../pages/ContactsPage/ContactsPage'))
 
 const App = () => {
   const dispatch = useDispatch()
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => { dispatch(refreshUser()) }, [dispatch])
 
@@ -51,20 +53,3 @@ const App = () => {
 };
 
 export default App;
-
-
-// const handleAddContact = (newContact) => {
-//   dispatch(addContact(newContact));
-// };
-
-// const handleDeleteContact = (contactId) => {
-//   dispatch(deleteContact(contactId));
-// };
-
-// const handleFilterChange = (value) => {
-//   dispatch(changeFilter(value));
-// };
-
-// const filteredContacts = contacts.filter((contact) =>
-//   contact.name.toLowerCase().includes(filter.toLowerCase())
-// );

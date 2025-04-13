@@ -9,12 +9,12 @@ export default function UserMenu() {
     const user = useSelector(selectUser)
 
     const handleLogOut = () => {
-        dispatch(logOut)
+        dispatch(logOut())
     }
 
     return (
-        <div>
-            <p>Wellkome {user.name}</p>
+        <div className={styles.wrapper}>
+            <p className={styles.username}>Welcome, {user.name} !</p>
             <button type="button" onClick={handleLogOut}>Logout</button>
         </div>
     );

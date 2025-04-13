@@ -1,5 +1,5 @@
 import AppBar from '../AppBar/AppBar';
-// import styles from "../Layout/Layout.module.css";
+import styles from "../Layout/Layout.module.css";
 
 
 export default function Layout({ children }) {

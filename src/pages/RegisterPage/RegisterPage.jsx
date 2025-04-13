@@ -5,7 +5,7 @@ import RegistrationForm from '../../components/RegistrationForm/RegistrationForm
 export default function RegisterPage() {
     return (
         <div>
-            <PageTitle>Regidter Your account</PageTitle>
+            <PageTitle>Register Your account</PageTitle>
             <RegistrationForm />
         </div>
     );

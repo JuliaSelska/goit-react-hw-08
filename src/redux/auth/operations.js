@@ -8,7 +8,7 @@ export const register = createAsyncThunk(
     'auth/register',
     async (credentials, thunkAPI) => {
         try {
-            const responce = await axios.post('/users/signup', credentials);
+            const response = await axios.post('/users/signup', credentials);
 
             setAuthHeader(`Bearer ${response.data.token}`);
 
@@ -17,11 +17,11 @@ export const register = createAsyncThunk(
             return thunkAPI.rejectWithValue(error.message);
         }
     });
-// POST USER LOGIN
+
 
 export const logIn = createAsyncThunk('auth/logIn', async (credentials, thunkAPI) => {
     try {
-        const responce = await axios.post('/users/login', credentials);
+        const response = await axios.post('/users/login', credentials);
         setAuthHeader(`Bearer ${response.data.token}`);
         return response.data
     } catch (error) {
@@ -30,10 +30,22 @@ export const logIn = createAsyncThunk('auth/logIn', async (credentials, thunkAPI
 });
 //Post logIn
 
-export const logOut = createAsyncThunk('auth/logOut', async () => {
-    await axios.post('/users/logout');
-    setAuthHeader("");
-});
+export const logOut = createAsyncThunk(
+    'auth/logOut',
+    async (_, thunkAPI) => {
+        try {
+            const state = thunkAPI.getState();
+            const token = state.auth.token;
+            if (!token) {
+                return thunkAPI.rejectWithValue('No token provided');
+            }
+            setAuthHeader(`Bearer ${token}`);
+            await axios.post('/users/logout');
+            setAuthHeader("");
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    });
 //Post logOut
 
 export const refreshUser = createAsyncThunk(
