@@ -15,3 +15,5 @@ export const AppBar = () => {
         </header>
     );
 };
+
+export default AppBar;
